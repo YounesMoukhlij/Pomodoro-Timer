@@ -1,5 +1,8 @@
 
+
 # Pomodoro-Timer
+
+**Subject:** [Pomodoro Timer Project on roadmap.sh](https://roadmap.sh/projects/pomodoro-timer)
 
 This project is a modern, responsive Pomodoro Timer app built with **React 19 + TypeScript + Vite** and styled using **Tailwind CSS v4**. It demonstrates best practices in frontend architecture, state management, and responsive design, and is structured for easy learning and extension.
 
@@ -164,6 +167,18 @@ pomodoro-timer/
 
 ---
 
+
+## 👤 Author
+
+- **Younes Moukhlij**
+
+---
+
 ## 💡 Contribution & License
 
 This project is for learning and demonstration. Feel free to fork, modify, and use for your own productivity!
+
+<div align="center">
+
+[✅ Back to Web Roadmap Projects ✅](https://github.com/YounesMoukhlij/web-roadmap-projects)
+</div>
