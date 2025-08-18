@@ -1,0 +1,8 @@
+@import "tailwindcss";
+
+
+@layer components {
+  .yy {
+    @apply border-2;
+  }
+}
