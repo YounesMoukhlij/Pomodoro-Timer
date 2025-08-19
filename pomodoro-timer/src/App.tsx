@@ -36,14 +36,14 @@ export default function App()
   if (isActive)
   {
     return (
-          <div className='w-full h-full grid grid-cols-[15%_85%] grid-rows-[5%_95%] md:grid-cols-[250px_1fr] md:grid-rows-[5%_95%] '>
+          <div className='bg-zinc-900 w-full h-full grid grid-cols-[15%_85%] grid-rows-[5%_95%] md:grid-cols-[250px_1fr] md:grid-rows-[5%_95%]'>
           <div className={`col-span-1 row-span-2 hidden md:block`}>
             <Sidebar isActive={isActive} setActive={setActive} />
           </div>
           <div className='col-span-1 row-span-1'>
             <Header/>
           </div>
-          <div className="col-span-1 row-span-1 ">
+          <div className="col-span-1 row-span-1 md:col-span-1 md:row-span-1">
             <Content/>
           </div>
         </div>
@@ -51,15 +51,15 @@ export default function App()
   }
   return (
     <div className='w-full h-full  grid grid-cols-1 grid-rows-[5%_95%]   md:grid-cols-[70px_1fr] md:grid-rows-[5%_95%] '>
-          <div className="hidden yy border-green-600 md:col-span-1 md:row-span-2 md:block ">
+          <div className="hidden  md:col-span-1 md:row-span-2 md:block ">
             <Sidebar isActive={isActive} setActive={setActive} />
           </div>
           <div className='col-span-1 row-span-1 yy  md:col-span-1 md:row-span-1'>
             <Header/>
           </div>
-          {/* <div className="col-span-1 row-span-1 yy border-yellow-500 md:col-span-1 md:row-span-1 ">
+          <div className="col-span-1 row-span-1 bg-black md:col-span-1 md:row-span-1 ">
             <Content/>
-          </div> */}
+          </div>
         </div>
     )
 }

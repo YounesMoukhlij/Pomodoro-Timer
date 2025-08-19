@@ -15,7 +15,7 @@ export default function Sidebar ({isActive, setActive} :  SidebarProps)
     if (isActive)
     {
         return (
-            <div className="bg-gray-800 w-[100%] h-[100%]  self-start border-r-2 border-gray-500 transition-transform duration-500 ease-in-out">
+            <div className="bg-zinc-900 w-[100%] h-[100%]  self-start border-r-2 border-gray-500 transition-transform duration-500 ease-in-out">
                 <div className="p-3 flex justify-start  items-center h-[10%]">
                     <button
                         onClick={() => setActive(!isActive)}
@@ -46,7 +46,7 @@ export default function Sidebar ({isActive, setActive} :  SidebarProps)
     )}
 
         return (
-            <div className="bg-gray-800 w-[100%] h-[100%] self-start border-r-2 border-gray-500">
+            <div className="bg-zinc-900 w-[100%] h-[100%] self-start border-r-2 border-gray-500">
             <div className="p-2 flex justify-center items-center h-[10%]">
                 <button
                     onClick={() => setActive(!isActive)}
