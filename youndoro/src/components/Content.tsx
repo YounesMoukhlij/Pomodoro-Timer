@@ -180,7 +180,7 @@ export default function Content() {
                 className="text-sm font-bold md:text-xl  hover:bg-gray-700 hover:rounded-xl text-gray-400 cursor-pointer p-2"
                 onClick={() => setTimer(timer + 5 * 60)}
               >
-                + 5 min
+                + 95 min
               </h1>
               <h1
                 className="text-sm font-bold md:text-xl  hover:bg-gray-700 hover:rounded-xl text-gray-400 cursor-pointer p-2"
