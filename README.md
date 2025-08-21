@@ -1,149 +1,190 @@
 
 
-# Pomodoro-Timer
 
-**Subject:** [Pomodoro Timer Project on roadmap.sh](https://roadmap.sh/projects/pomodoro-timer)
+<div align="center">
+  <img src="youndoro/public/pomodoro.png" width="80" alt="Pomodoro Icon" />
+  
+  <h1>Pomodoro-Timer</h1>
+  <p><b>Modern, Responsive Pomodoro App built with React 19, TypeScript, Vite, and Tailwind CSS v4</b></p>
+  <a href="https://roadmap.sh/projects/pomodoro-timer">Project on roadmap.sh</a>
+</div>
 
-This project is a modern, responsive Pomodoro Timer app built with **React 19 + TypeScript + Vite** and styled using **Tailwind CSS v4**. It demonstrates best practices in frontend architecture, state management, and responsive design, and is structured for easy learning and extension.
+---
+
+## ✨ Overview
+
+YounDoro is a professional Pomodoro Timer app featuring a beautiful UI, advanced state management, and a fully responsive layout. Built for productivity, learning, and extensibility.
 
 ---
 
 ## 🚀 Features
 
-- **Professional 2D Grid Layout**: Uses CSS Grid for a clean, app-like structure with persistent sidebar and header.
-- **Responsive Design**: Adapts to all screen sizes using Tailwind breakpoints and React state.
-- **Animated Sidebar**: Sidebar can be toggled open/closed, with smooth transitions and consistent width.
-- **Accessible Header**: Includes a burger menu for mobile, icons, and branding.
-- **Modern UI**: Uses Poppins font, React Icons, and Tailwind for a beautiful, modern look.
-- **State Management**: Sidebar state is synced with screen size for seamless UX.
-- **Component-Based**: All UI is split into reusable, maintainable components.
+- **2D CSS Grid Layout**: Persistent sidebar, header, and main content using modern CSS Grid.
+- **Responsive Design**: Adapts to all devices with Tailwind breakpoints and React state.
+- **Animated Sidebar**: Expand/collapse with smooth transitions and icon navigation.
+- **Accessible Header**: Burger menu for mobile, branding, and quick links.
+- **Integrated Music Player**: Play calm music while you work (Header component).
+- **Multiple Timers**: Pomodoro, Global Time, and a simple Timer.
+- **Task Management**: Add, complete, and filter tasks (Tasks component).
+- **Modern UI**: Poppins font, React Icons, and custom Tailwind utilities.
+- **TypeScript Strictness**: All components are strongly typed.
+- **Component Isolation**: Each feature is a separate, reusable component.
 
 ---
 
-## 🏗️ Layout Architecture: 2D CSS Grid System
+## 🏗️ Layout & Architecture
 
-The app uses a **CSS Grid 2D layout** to create a professional structure:
-
-### Grid Container Example
+<details>
+<summary><b>Grid System</b></summary>
 
 ```tsx
-<div className='w-full h-full grid grid-cols-[15%_85%] grid-rows-[5%_95%] md:grid-cols-[250px_1fr] md:grid-rows-[5%_95%]'>
+<div className='w-full h-full grid grid-cols-[15%_85%] grid-rows-[7%_93%] md:grid-cols-[250px_1fr] md:grid-rows-[7%_93%]'>
 ```
 
-**Breakdown:**
-- `w-full h-full` – Full viewport
-- `grid` – Enables CSS Grid
-- `grid-cols-[15%_85%]` – 2 columns: sidebar (15%), main (85%)
-- `grid-rows-[5%_95%]` – 2 rows: header (5%), content (95%)
-- `md:grid-cols-[250px_1fr]` – On medium+ screens, sidebar is fixed 250px
+| Area     | Desktop (md+)         | Mobile (sm)         |
+|----------|-----------------------|---------------------|
+| Sidebar  | 250px (15%)           | Hidden              |
+| Header   | 7%                    | 7%                  |
+| Content  | 1fr (85%)             | 1fr                 |
 
-### Visual Grid Structure
+**Visual:**
 
 ```
-     Sidebar (15%/250px)   Main (85%/1fr)
-   ┌───────────────────────┬────────────────────────────┐
-R1 │                       │         Header             │ 5%
-   ├───────────────────────┼────────────────────────────┤
-R2 │      Sidebar          │         Content            │ 95%
-   └───────────────────────┴────────────────────────────┘
+┌───────────────┬────────────────────────────┐
+│   Sidebar     │         Header             │
+├───────────────┼────────────────────────────┤
+│   Sidebar     │         Content            │
+└───────────────┴────────────────────────────┘
 ```
 
-#### Tailwind Breakpoints Used
-
-- `sm`: 640px (small devices)
-- `md`: 768px (tablets)
-- `lg`: 1024px (desktops)
+**Breakpoints:**
+- `sm`: 640px
+- `md`: 768px
+- `lg`: 1024px
 - `xl`: 1280px
 - `2xl`: 1536px
+</details>
 
 ---
 
-## 🧩 Component Structure & Responsibilities
+## 🧩 Component Breakdown
 
-### 1. `App.tsx` (Root)
-- **Purpose**: Manages global layout and sidebar state.
-- **State**: `isActive` (sidebar open/closed)
-- **Responsive Logic**: Uses a `useEffect` hook to auto-close sidebar on small screens:
-  ```tsx
-  useEffect(() => {
-    const mediaQuery = window.matchMedia('(max-width: 767px)');
-    const handleScreenChange = (e) => {
-      if (e.matches) setActive(false);
-    };
-    if (mediaQuery.matches) setActive(false);
-    mediaQuery.addEventListener('change', handleScreenChange);
-    return () => mediaQuery.removeEventListener('change', handleScreenChange);
-  }, []);
-  ```
-- **Layout**: Renders grid with sidebar, header, and content. Sidebar is hidden on small screens.
+### `App.tsx` (Root)
+- Manages layout, sidebar state, and routing.
+- Responsive sidebar auto-closes on small screens.
+- Uses React Router v7 for navigation.
 
-### 2. `Sidebar.tsx`
-- **Purpose**: Navigation panel with toggle button and icons.
-- **States**: Expanded (shows text) and collapsed (icons only), both with fixed width (`w-60`).
-- **Toggle**: Chevron button toggles sidebar. Uses Tailwind transitions for smooth animation.
-- **Responsive**: Hidden on small screens (`hidden md:block`).
-- **Icons**: Uses `react-icons` for visual navigation.
+### `Sidebar.tsx`
+- Navigation with icons and text.
+- Expand/collapse with chevron button.
+- Responsive: hidden on mobile, fixed width on desktop.
 
-### 3. `Header.tsx`
-- **Purpose**: Top navigation bar with branding, burger menu, and navigation links.
-- **Burger Menu**: Appears on mobile, toggles mobile navigation overlay.
-- **Styling**: Uses Tailwind for spacing, colors, and transitions.
+### `Header.tsx`
+- Branding, burger menu, and quick links (Portfolio, LinkedIn, Github).
+- Integrated music player (fetches calm music from API, play/pause/next/prev/loop, progress bar).
+- Shows current time (auto-updates every second).
 
-### 4. `Content.tsx`
-- **Purpose**: Main Pomodoro timer interface (timer, controls, stats, etc.).
-- **Layout**: Fills main content area of the grid.
+### `Pomodoro.tsx`
+- Main timer with Focus, Short Break, and Long Break modes.
+- Progress bar, add time buttons, and start/pause/reset controls.
+- Uses `Tasks` component for task management.
+
+### `Tasks.tsx`
+- Add, complete, and filter tasks (Pending/Completed).
+- Keyboard and button controls, persistent state.
+
+### `Timer.tsx`
+- Simple stopwatch timer (start, pause, reset).
+
+### `GlobalTime.tsx`
+- Shows current time in multiple timezones (selectable).
 
 ---
 
-## 🎨 Styling & Technology Choices
+## 🛠️ Tech Stack & Configuration
 
-- **Tailwind CSS v4**: Utility-first CSS framework for rapid, consistent styling. Uses the new `@tailwindcss/postcss` plugin for v4 compatibility.
-- **React Icons**: For all sidebar and header icons (Hi2, Gi, Io5, Fa6 sets).
-- **Poppins Font**: Modern, clean font for professional look (configured in `tailwind.config.js`).
-- **Custom Utilities**: Example `.yy` class for border debugging.
+| Tool            | Version      | Purpose                                  |
+|-----------------|-------------|------------------------------------------|
+| React           | 19.x        | UI library                               |
+| TypeScript      | 5.x         | Type safety                              |
+| Vite            | 7.x         | Fast dev/build tool                      |
+| Tailwind CSS    | 4.x         | Utility-first CSS                        |
+| React Icons     | 5.x         | Icon library                             |
+| ESLint          | 9.x         | Linting                                  |
+| PostCSS         | 8.x         | CSS processing                           |
 
----
-
-## 📱 Responsive Design & State Sync
-
-- **Sidebar State**: Controlled by `isActive` in `App.tsx`. Automatically closes on small screens for better UX.
-- **Grid Adaptation**: Grid columns/rows change at breakpoints for optimal layout.
-- **Mobile Navigation**: Header burger menu opens overlay navigation on small screens.
-
----
-
-## 🛠️ Project Structure
-
+**Tailwind Config:**
+```js
+// tailwind.config.js
+export default {
+  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
+  theme: {
+    extend: {
+      fontFamily: {
+        'poppins': ['Poppins', 'sans-serif'],
+        'pacifico': ['Pacifico', 'cursive'],
+      },
+    },
+  },
+  plugins: [],
+}
 ```
-pomodoro-timer/
+
+**PostCSS Config:**
+```js
+// postcss.config.js
+export default {
+  plugins: {
+    '@tailwindcss/postcss': {},
+    autoprefixer: {},
+  },
+}
+```
+
+---
+
+## � Project Structure
+
+```text
+youndoro/
+├── public/
+│   └── pomodoro.png
 ├── src/
+│   ├── assets/
+│   │   └── react.svg
 │   ├── components/
+│   │   ├── GlobalTime.tsx
 │   │   ├── Header.tsx
+│   │   ├── Pomodoro.tsx
 │   │   ├── Sidebar.tsx
-│   │   └── Content.tsx
+│   │   ├── Tasks.tsx
+│   │   └── Timer.tsx
 │   ├── App.tsx
 │   ├── index.css
-│   └── main.tsx
-├── tailwind.config.js
-├── postcss.config.js
+│   ├── main.tsx
+│   └── vite-env.d.ts
+├── index.html
 ├── package.json
+├── postcss.config.js
+├── tailwind.config.js
+├── tsconfig.json
+├── tsconfig.app.json
+├── tsconfig.node.json
+├── vite.config.ts
 └── README.md
 ```
 
 ---
 
-## 🧠 Key Learnings & Best Practices
+## 🎨 Styling & Fonts
 
-1. **CSS Grid for App Layouts**: Enables true 2D layouts, perfect for sidebar + header apps.
-2. **Tailwind v4 Setup**: Requires new PostCSS plugin, but enables latest features and performance.
-3. **Responsive State Management**: Syncing React state with media queries ensures UI always matches device size.
-4. **Component Isolation**: Each UI part is a separate, reusable component.
-5. **Consistent Widths**: Sidebar always uses a fixed width (`w-60`) for both expanded/collapsed states, preventing layout shift.
-6. **Modern UI/UX**: Animations, icons, and font choices create a professional, enjoyable experience.
+- **Poppins** font via Google Fonts (see `index.html` and Tailwind config)
+- **Custom utility**: `.yy` for border debugging
+- **Dark theme**: Uses Tailwind's dark color palette
 
 ---
 
-## 📦 How to Run
+## 📦 Getting Started
 
 1. **Install dependencies:**
    ```bash
@@ -158,6 +199,17 @@ pomodoro-timer/
 
 ---
 
+## 🧠 Best Practices & Learnings
+
+- **CSS Grid for Layouts**: Enables true 2D layouts, perfect for sidebar + header apps.
+- **Tailwind v4 Setup**: Uses new PostCSS plugin for latest features and performance.
+- **Responsive State Management**: Syncs React state with media queries for seamless UX.
+- **Component Isolation**: Each UI part is a separate, reusable component.
+- **Consistent Widths**: Sidebar always uses a fixed width for both expanded/collapsed states.
+- **Modern UI/UX**: Animations, icons, and font choices create a professional, enjoyable experience.
+
+---
+
 ## 📚 References
 
 - [Pomodoro Technique](https://en.wikipedia.org/wiki/Pomodoro_Technique)
@@ -167,10 +219,10 @@ pomodoro-timer/
 
 ---
 
-
 ## 👤 Author
 
-- **Younes Moukhlij**
+- **Younes Moukhlij**  
+  [Portfolio](https://github.com/YounesMoukhlij/) · [LinkedIn](https://linkedin.com/in/YounesMoukhlij/) · [Github](https://github.com/YounesMoukhlij/)
 
 ---
 
@@ -179,6 +231,5 @@ pomodoro-timer/
 This project is for learning and demonstration. Feel free to fork, modify, and use for your own productivity!
 
 <div align="center">
-
-[✅ Back to Web Roadmap Projects ✅](https://github.com/YounesMoukhlij/web-roadmap-projects)
+  <a href="https://github.com/YounesMoukhlij/web-roadmap-projects">✅ Back to Web Roadmap Projects ✅</a>
 </div>
