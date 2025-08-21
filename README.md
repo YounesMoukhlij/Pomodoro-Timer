@@ -3,7 +3,7 @@
 
 <div align="center">
   <img src="youndoro/public/pomodoro.png" width="80" alt="Pomodoro Icon" />
-  
+
   <h1>Pomodoro-Timer</h1>
   <p><b>Modern, Responsive Pomodoro App built with React 19, TypeScript, Vite, and Tailwind CSS v4</b></p>
   <a href="https://roadmap.sh/projects/pomodoro-timer">Project on roadmap.sh</a>
@@ -221,7 +221,7 @@ youndoro/
 
 ## 👤 Author
 
-- **Younes Moukhlij**  
+- **Younes Moukhlij**
   [Portfolio](https://github.com/YounesMoukhlij/) · [LinkedIn](https://linkedin.com/in/YounesMoukhlij/) · [Github](https://github.com/YounesMoukhlij/)
 
 ---

@@ -1,12 +1,18 @@
-import { HiOutlineArrowsPointingOut, HiChevronLeft, HiChevronRight } from "react-icons/hi2";
+import {
+  HiOutlineArrowsPointingOut,
+  HiChevronLeft,
+  HiChevronRight,
+} from "react-icons/hi2";
 import { FaRegSquare, FaRegCheckSquare } from "react-icons/fa";
 import { IoCalendar } from "react-icons/io5";
 import { useState, useEffect } from "react";
 import Tasks from "./Tasks";
 
-export default function Pomodoro()
-{
+// import { HiChevronLeft, HiChevronRight } from "react-icons/hi2";
+// import { FaRegSquare, FaRegCheckSquare } from "react-icons/fa";
+// import { IoCalendar } from "react-icons/io5";
 
+export default function Pomodoro() {
   const [isWide, setWide] = useState(false);
   const [timer, setTimer] = useState(25 * 60);
   const [mode, isMode] = useState("");
@@ -59,13 +65,40 @@ export default function Pomodoro()
     }
   }, [timer, isRunning, isPaused, progress]);
 
+  const [tasks, setTasks] = useState<Task[]>([]);
+  const [showCompleted, setShowCompleted] = useState(false);
+  const [newTask, setNewTask] = useState("");
+  // const [date] = useState(new Date());
+
+  const handleAddTask = () => {
+    if (newTask.trim() === "") return;
+    setTasks([
+      ...tasks,
+      { id: Date.now(), text: newTask.trim(), completed: false },
+    ]);
+    setNewTask("");
+  };
+
+  const handleToggleTask = (id: number) => {
+    setTasks((tasks) =>
+      tasks.map((task) =>
+        task.id === id ? { ...task, completed: !task.completed } : task
+      )
+    );
+  };
+
+  const filteredTasks = tasks.filter((task) =>
+    showCompleted ? task.completed : !task.completed
+  );
+
   return (
     <div
       className={`text-white  bg-black h-full w-full flex-col md:flex-row flex items-center justify-center  gap-5 p-5 `}
     >
       <Tasks/>
+
       <div
-        className={`bg-zinc-900  border-2 border-gray-400 w-full md:w-[50%] h-[100%] rounded-3xl flex flex-col justify-center items-center`}
+        className={`bg-zinc-900  border-2 border-gray-400 w-full md:w-[50%] h-[50%] md:h-[100%] rounded-3xl flex flex-col justify-center items-center`}
       >
         <div className="p-5 w-[100%] h-[10%] w-full  flex  flex-row items-center justify-between">
           <div
@@ -87,7 +120,9 @@ export default function Pomodoro()
           <div className="p-5 gap-3   h-[90%] w-[90%] text-2xl flex flex-col justify-center items-center">
             <div className="flex justify-evenly items-center   h-[10%] w-[100%]">
               <h1
-                className={` text-sm font-bold md:text-xl p-3 rounded-xl text-gray-400 cursor-pointer ${mode == "focus" ? "bg-gray-800" : ""} `}
+                className={` text-sm font-bold md:text-xl p-3 rounded-xl text-gray-400 cursor-pointer ${
+                  mode == "focus" ? "bg-gray-800" : ""
+                } `}
                 onClick={() => {
                   setTimer(25 * 60);
                   isMode("focus");
@@ -97,7 +132,9 @@ export default function Pomodoro()
                 Focus
               </h1>
               <h1
-                className={`text-sm font-bold md:text-xl p-3 rounded-xl text-gray-400 cursor-pointer ${mode == "short" ? "bg-gray-800" : ""} `}
+                className={`text-sm font-bold md:text-xl p-3 rounded-xl text-gray-400 cursor-pointer ${
+                  mode == "short" ? "bg-gray-800" : ""
+                } `}
                 onClick={() => {
                   setTimer(5 * 60);
                   isMode("short");
@@ -107,7 +144,9 @@ export default function Pomodoro()
                 Short Break
               </h1>
               <h1
-                className={`text-sm font-bold md:text-xl p-3 rounded-xl text-gray-400 cursor-pointer ${mode == "long" ? "bg-gray-800" : ""} `}
+                className={`text-sm font-bold md:text-xl p-3 rounded-xl text-gray-400 cursor-pointer ${
+                  mode == "long" ? "bg-gray-800" : ""
+                } `}
                 onClick={() => {
                   setTimer(10 * 60);
                   isMode("long");
@@ -156,14 +195,18 @@ export default function Pomodoro()
             </div>
             <div className="h-[10%] w-full  flex justify-center items-center">
               <button
-                className={`bg-gray-700 w-[20%] text-sm font-bold md:text-xl rounded-lg cursor-pointer p-2 ${isRunning ? "hidden" : "block"}`}
+                className={`bg-gray-700 w-[20%] text-sm font-bold md:text-xl rounded-lg cursor-pointer p-2 ${
+                  isRunning ? "hidden" : "block"
+                }`}
                 onClick={() => setIsRunning(true)}
               >
                 Start
               </button>
 
               <button
-                className={`bg-gray-700 w-[20%]  rounded-lg text-sm font-bold md:text-xl cursor-pointer p-2 m-2 ${isRunning ? "block" : "hidden"}`}
+                className={`bg-gray-700 w-[20%]  rounded-lg text-sm font-bold md:text-xl cursor-pointer p-2 m-2 ${
+                  isRunning ? "block" : "hidden"
+                }`}
                 onClick={() => {
                   setPause(!isPaused);
                 }}
@@ -171,7 +214,9 @@ export default function Pomodoro()
                 {isPaused ? "Resume" : "Pause"}
               </button>
               <button
-                className={`bg-gray-700 w-[20%]  rounded-lg  text-sm font-bold md:text-xl cursor-pointer p-2 m-2 ${isRunning ? "block" : "hidden"}`}
+                className={`bg-gray-700 w-[20%]  rounded-lg  text-sm font-bold md:text-xl cursor-pointer p-2 m-2 ${
+                  isRunning ? "block" : "hidden"
+                }`}
                 onClick={() => {
                   setIsRunning(false);
                   resetTime();
