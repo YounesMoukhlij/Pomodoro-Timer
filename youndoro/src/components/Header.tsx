@@ -14,7 +14,7 @@ import {
   FaPause,
 } from "react-icons/fa6";
 
-// 1024 katqwad l9adia
+// 1024 is another breaking point
 
 export default function Header() {
   const [isBurger, setBurger] = useState(false);
@@ -166,7 +166,7 @@ export default function Header() {
       <div className="md:w-[80%] h-[100%] w-[50%]  flex p-4 justify-between md:justify-evenly items-center text-gray-400">
         <div className="hidden md:block w-[20%]">
           <button className="cursor-pointer  p-2  hover:text-white rounded-l">
-            <a href="https://github.com/YounesMoukhlij/">
+            <a href="https://github.com/YounesMoukhlij/" target="_blank" rel="noopener noreferrer">
               <h2 className="font-poppins font-semibold md:text-xl">
                 Portofolio
               </h2>
@@ -175,7 +175,7 @@ export default function Header() {
         </div>
         <div className="hidden md:block w-[20%]">
           <button className="cursor-pointer   p-2  hover:text-white rounded-l">
-            <a href="https://linkedin.com/in/YounesMoukhlij/">
+            <a href="https://linkedin.com/in/YounesMoukhlij/" target="_blank" rel="noopener noreferrer">
               <h2 className=" font-poppins font-semibold md:text-xl">
                 LinkedIn
               </h2>
@@ -184,7 +184,7 @@ export default function Header() {
         </div>
         <div className="hidden md:block w-[20%]">
           <button className="cursor-pointer  p-2  hover:text-white rounded-l">
-            <a href="https://github.com/YounesMoukhlij/">
+            <a href="https://github.com/YounesMoukhlij/" target="_blank" rel="noopener noreferrer">
               <h2 className="font-poppins font-semibold md:text-xl">Github</h2>
             </a>
           </button>
@@ -317,7 +317,7 @@ export default function Header() {
         <div className="h-[45%] flex flex-col   pt-15 text-white space-y-4    border-yellow-500">
           <div className="flex justify-start gap-4 w-full flex p-3 text-gray-400 hover:text-white rounded-lg transition-all duration-200 cursor-pointer">
             <FaUser className="w-6 h-6" />
-            <a href="https://github.com/YounesMoukhlij/">
+            <a href="https://github.com/YounesMoukhlij/" target="_blank" rel="noopener noreferrer">
               <h2 className="font-poppins text-sm font-semibold">Portofolio</h2>
             </a>
           </div>
