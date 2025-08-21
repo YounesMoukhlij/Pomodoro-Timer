@@ -303,10 +303,6 @@ export default function Header() {
             <h1 className="text-sm font-bold">Global time</h1>
           </div>
           <div className="gap-4 w-full flex p-3 text-gray-400 hover:text-white rounded-lg transition-all duration-200 cursor-pointer">
-            <IoCalendar className="w-6 h-6" />
-            <h1 className="text-sm font-bold">Daily Planner</h1>
-          </div>
-          <div className="gap-4 w-full flex p-3 text-gray-400 hover:text-white rounded-lg transition-all duration-200 cursor-pointer">
             <IoTimer className="w-6 h-6" />
             <h1 className="text-sm font-bold">Timer</h1>
           </div>

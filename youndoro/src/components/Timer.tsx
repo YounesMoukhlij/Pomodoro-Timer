@@ -1,9 +1,13 @@
+
 import { useState, useRef } from "react";
 
-export default function Timer() {
+
+export default function Timer()
+{
   const [seconds, setSeconds] = useState(0);
   const [isRunning, setIsRunning] = useState(false);
-  const intervalRef = useRef<NodeJS.Timeout | null>(null);
+  // In browsers, setInterval returns a number, not NodeJS.Timeout
+  const intervalRef = useRef<number | null>(null);
 
   const formatTime = (secs: number) => {
     const m = Math.floor(secs / 60)
@@ -63,3 +67,4 @@ export default function Timer() {
     </div>
   );
 }
+

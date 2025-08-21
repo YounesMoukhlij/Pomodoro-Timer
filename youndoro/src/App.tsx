@@ -3,7 +3,6 @@ import Sidebar from "./components/Sidebar.tsx";
 import Pomodoro from "./components/Pomodoro.tsx";
 import GlobalTime from "./components/GlobalTime.tsx";
 import Timer from "./components/Timer.tsx";
-import DailyPlanner from "./components/DailyPlanner.tsx";
 import { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
