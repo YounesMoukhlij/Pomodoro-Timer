@@ -35,13 +35,7 @@ export default function Sidebar({ isActive, setActive }: SidebarProps) {
             <IoTime className="w-8 h-8" />
             <h1 className="text-l font-bold ">Global time</h1>
           </Link>
-          <Link
-            to="/DailyPlanner"
-            className="cursor-pointer flex flex-row gap-4 items-center  grp p-3 pl-5 text-gray-400 hover:text-white transition-all duration-500 cursor-pointer"
-          >
-            <IoCalendar className="w-8 h-8" />
-            <h1 className="text-l font-bold ">Daily Planner</h1>
-          </Link>
+
             <Link to="/Timer" className="cursor-pointer flex flex-row gap-4 items-center  grp p-3 pl-5 text-gray-400 hover:text-white transition-all duration-500 cursor-pointer">
               <IoTimer className="w-8 h-8" />
               <h1 className="text-l font-bold ">Timer</h1>
@@ -62,26 +56,15 @@ export default function Sidebar({ isActive, setActive }: SidebarProps) {
         </button>
       </div>
       <div className="h-[90%] flex items-center flex-col text-white space-y-4  justify-start pt-5">
-        <div className=" p-3 text-gray-400 hover:text-white  rounded-lg transition-all duration-200 cursor-pointer">
-          <Link to="/">
+          <Link to="/" className=" p-3 text-gray-400 hover:text-white  rounded-lg transition-all duration-200 cursor-pointer">
             <GiTomato className="w-8 h-8" />
           </Link>
-        </div>
-        <div className=" p-3 text-gray-400 hover:text-white  rounded-lg transition-all duration-200 cursor-pointer">
-          <Link to="/GlobalTime">
+          <Link to="/GlobalTime"className=" p-3 text-gray-400 hover:text-white  rounded-lg transition-all duration-200 cursor-pointer">
             <IoTime className="w-8 h-8" />
           </Link>
-        </div>
-        <div className=" p-3 text-gray-400 hover:text-white  rounded-lg transition-all duration-200 cursor-pointer">
-          <Link to="/DailyPlanner">
-            <IoCalendar className="w-8 h-8" />
-          </Link>
-        </div>
-        <div className=" p-3 text-gray-400 hover:text-white  rounded-lg transition-all duration-200 cursor-pointer">
-          <Link to="/Timer">
+          <Link to="/Timer"className=" p-3 text-gray-400 hover:text-white  rounded-lg transition-all duration-200 cursor-pointer">
             <IoTimer className="w-8 h-8" />
           </Link>
-        </div>
       </div>
     </div>
   );

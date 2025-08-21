@@ -51,7 +51,6 @@ export default function App() {
           <Routes>
             <Route path="/" element={<Pomodoro />} />
             <Route path="/GlobalTime" element={<GlobalTime />} />
-            <Route path="/DailyPlanner" element={<DailyPlanner />} />
             <Route path="/Timer" element={<Timer />} />
             <Route path="*" element={<div className="text-white p-8">Page Not Found</div>} />
           </Routes>
