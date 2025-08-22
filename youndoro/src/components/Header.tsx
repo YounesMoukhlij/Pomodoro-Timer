@@ -3,6 +3,10 @@ import { HiOutlineBars3, HiOutlineXMark } from "react-icons/hi2";
 import { FaRepeat } from "react-icons/fa6";
 import { GiTomato } from "react-icons/gi";
 import { IoTime, IoTimer, IoCalendar } from "react-icons/io5";
+
+import Pomodoro from "./Pomodoro.tsx";
+import GlobalTime from "./GlobalTime.tsx";
+import Timer from "./Timer.tsx";
 import {
   FaUser,
   FaLinkedin,
@@ -13,6 +17,7 @@ import {
   FaPlay,
   FaPause,
 } from "react-icons/fa6";
+import { Link } from "react-router-dom";
 
 // 1024 is another breaking point
 
@@ -166,7 +171,11 @@ export default function Header() {
       <div className="md:w-[80%] h-[100%] w-[50%]  flex p-4 justify-between md:justify-evenly items-center text-gray-400">
         <div className="hidden md:block w-[20%]">
           <button className="cursor-pointer  p-2  hover:text-white rounded-l">
-            <a href="https://github.com/YounesMoukhlij/" target="_blank" rel="noopener noreferrer">
+            <a
+              href="https://github.com/YounesMoukhlij/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <h2 className="font-poppins font-semibold md:text-xl">
                 Portofolio
               </h2>
@@ -175,7 +184,11 @@ export default function Header() {
         </div>
         <div className="hidden md:block w-[20%]">
           <button className="cursor-pointer   p-2  hover:text-white rounded-l">
-            <a href="https://linkedin.com/in/YounesMoukhlij/" target="_blank" rel="noopener noreferrer">
+            <a
+              href="https://linkedin.com/in/YounesMoukhlij/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <h2 className=" font-poppins font-semibold md:text-xl">
                 LinkedIn
               </h2>
@@ -184,7 +197,11 @@ export default function Header() {
         </div>
         <div className="hidden md:block w-[20%]">
           <button className="cursor-pointer  p-2  hover:text-white rounded-l">
-            <a href="https://github.com/YounesMoukhlij/" target="_blank" rel="noopener noreferrer">
+            <a
+              href="https://github.com/YounesMoukhlij/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <h2 className="font-poppins font-semibold md:text-xl">Github</h2>
             </a>
           </button>
@@ -294,18 +311,18 @@ export default function Header() {
         </div>
 
         <div className="  h-[45%] flex items-center flex-col text-white space-y-4 justify-start pt-5 ">
-          <div className="gap-4 w-full flex p-3 text-gray-400 hover:text-white rounded-lg transition-all duration-200 cursor-pointer">
-            <GiTomato className="w-6 h-6" />
-            <h1 className="text-sm font-bold">Pomodoro</h1>
-          </div>
-          <div className="gap-4 w-full flex p-3 text-gray-400 hover:text-white rounded-lg transition-all duration-200 cursor-pointer">
-            <IoTime className="w-6 h-6" />
-            <h1 className="text-sm font-bold">Global time</h1>
-          </div>
-          <div className="gap-4 w-full flex p-3 text-gray-400 hover:text-white rounded-lg transition-all duration-200 cursor-pointer">
-            <IoTimer className="w-6 h-6" />
-            <h1 className="text-sm font-bold">Timer</h1>
-          </div>
+            <Link to="/" className="gap-4 w-full flex p-3 text-gray-400 hover:text-white rounded-lg transition-all duration-200 cursor-pointer">
+              <GiTomato className="w-6 h-6" />
+              <h1 className="text-sm font-bold">Pomodoro</h1>
+            </Link>
+            <Link to="/GlobalTime"  className="gap-4 w-full flex p-3 text-gray-400 hover:text-white rounded-lg transition-all duration-200 cursor-pointer">
+              <IoTime className="w-6 h-6" />
+              <h1 className="text-sm font-bold">Global time</h1>
+            </Link>
+            <Link to="/Timer" className="gap-4 w-full flex p-3 text-gray-400 hover:text-white rounded-lg transition-all duration-200 cursor-pointer">
+              <IoTimer className="w-6 h-6" />
+              <h1 className="text-sm font-bold">Timer</h1>
+            </Link>
         </div>
 
         <hr className="mx-5 text-white opacity-50" />
@@ -313,22 +330,38 @@ export default function Header() {
         <div className="h-[45%] flex flex-col   pt-15 text-white space-y-4    border-yellow-500">
           <div className="flex justify-start gap-4 w-full flex p-3 text-gray-400 hover:text-white rounded-lg transition-all duration-200 cursor-pointer">
             <FaUser className="w-6 h-6" />
-            <a href="https://github.com/YounesMoukhlij/" target="_blank" rel="noopener noreferrer">
+            <a
+              href="https://linkedin.com/in/YounesMoukhlij/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <h2 className="font-poppins text-sm font-semibold">Portofolio</h2>
             </a>
           </div>
           <div className="flex justify-start gap-4 w-full flex p-3 text-gray-400 hover:text-white rounded-lg transition-all duration-200 cursor-pointer">
             <FaLinkedin className="w-6 h-6" />
-            <h2 className=" font-poppins text-sm font-semibold">LinkedIn</h2>
+            <a
+              href="https://linkedin.com/in/YounesMoukhlij/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <h2 className=" font-poppins text-sm font-semibold">LinkedIn</h2>
+            </a>
           </div>
           <div className="flex justify-start gap-4 w-full flex p-3 text-gray-400 hover:text-white rounded-lg transition-all duration-200 cursor-pointer">
             <FaGithub className="w-6 h-6" />
-            <h2 className="font-poppins text-sm font-semibold">Github</h2>
+            <a
+              href="https://github.com/YounesMoukhlij/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <h2 className="font-poppins text-sm font-semibold">Github</h2>
+            </a>
           </div>
         </div>
 
         <div className="h-[5%] flex flex-col justify-center items-center">
-          <h1 className="text-sm font-small text-gray-300">Younes Moukhlij</h1>
+          <h1 className="text-sm font-small opacity-30 text-gray-300">Younes Moukhlij</h1>
         </div>
       </div>
     </div>

@@ -1,24 +1,16 @@
-import {
-  HiOutlineArrowsPointingOut,
-  HiChevronLeft,
-  HiChevronRight,
-} from "react-icons/hi2";
-import { FaRegSquare, FaRegCheckSquare } from "react-icons/fa";
-import { IoCalendar } from "react-icons/io5";
+import { HiOutlineArrowsPointingOut } from "react-icons/hi2";
 import { useState, useEffect } from "react";
 import Tasks from "./Tasks";
-
-// import { HiChevronLeft, HiChevronRight } from "react-icons/hi2";
-// import { FaRegSquare, FaRegCheckSquare } from "react-icons/fa";
-// import { IoCalendar } from "react-icons/io5";
+import { useRef } from "react";
 
 export default function Pomodoro() {
-  const [isWide, setWide] = useState(false);
+  const pomodoroRef = useRef<HTMLDivElement>(null);
   const [timer, setTimer] = useState(25 * 60);
   const [mode, isMode] = useState("");
   const [isRunning, setIsRunning] = useState(false);
   const [isPaused, setPause] = useState(false);
   const [progress, setProgress] = useState(0);
+  const [isWide, setWide] = useState(false);
 
   function formatTime(seconds: number) {
     const m = Math.floor(seconds / 60)
@@ -65,51 +57,37 @@ export default function Pomodoro() {
     }
   }, [timer, isRunning, isPaused, progress]);
 
-  const [tasks, setTasks] = useState<Task[]>([]);
-  const [showCompleted, setShowCompleted] = useState(false);
-  const [newTask, setNewTask] = useState("");
-  // const [date] = useState(new Date());
 
-  const handleAddTask = () => {
-    if (newTask.trim() === "") return;
-    setTasks([
-      ...tasks,
-      { id: Date.now(), text: newTask.trim(), completed: false },
-    ]);
-    setNewTask("");
+  // Fullscreen handler
+  const handleFullscreen = () => {
+    if (!document.fullscreenElement) {
+      pomodoroRef.current?.requestFullscreen();
+    } else {
+      document.exitFullscreen();
+    }
+    setWide((w) => !w);
   };
-
-  const handleToggleTask = (id: number) => {
-    setTasks((tasks) =>
-      tasks.map((task) =>
-        task.id === id ? { ...task, completed: !task.completed } : task
-      )
-    );
-  };
-
-  const filteredTasks = tasks.filter((task) =>
-    showCompleted ? task.completed : !task.completed
-  );
 
   return (
     <div
       className={`text-white  bg-black h-full w-full flex-col md:flex-row flex items-center justify-center  gap-5 p-5 `}
     >
-      <Tasks/>
+      <Tasks />
 
       <div
+        ref={pomodoroRef}
         className={`bg-zinc-900  border-2 border-gray-400 w-full md:w-[50%] h-[50%] md:h-[100%] rounded-3xl flex flex-col justify-center items-center`}
       >
         <div className="p-5 w-[100%] h-[10%] w-full  flex  flex-row items-center justify-between">
           <div
             className={` w-[100%] h-[100%]  flex items-center justify-end gap-2`}
           >
-            <button className="flex items-center justify-center gap-2 p-2   cursor-pointer">
+            <button
+              className="flex items-center justify-center gap-2 p-2   cursor-pointer"
+              onClick={handleFullscreen}
+            >
               <HiOutlineArrowsPointingOut
                 className={` w-6 h-6 text-gray-500`}
-                onClick={() => {
-                  setWide(!isWide);
-                }}
               />
             </button>
           </div>
